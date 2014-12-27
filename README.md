@@ -1,4 +1,4 @@
-# README
+#[README](https://github.com/badromance007/depot/blob/master/README.md)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
