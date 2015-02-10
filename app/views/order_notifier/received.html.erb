@@ -1,7 +1,7 @@
 <h3>Dear <%= @order.name %></h3>
 
 
-<p>Thank you for your recent order from The Pragmatic Store.</p>>
+<p>Thank you for your recent order from The Pragmatic Store.</p>
 
 <p>You ordered the following items:</p>
 
@@ -10,7 +10,22 @@
     <th colspan="2">Qty</th>
     <th>Description</th>
   </tr>
- 
+
+  <% @order.line_items.each do |line_item| %>
+    <% if line_item == @current_item %>
+      <tr id="current_item">    
+    <% else %>  
+      <tr>
+    <% end %>
+        <td><%= line_item.quantity %> &times;</td>
+        <td><%= line_item.product.title %></td>
+        <td class="item_price"> <%= number_to_currency(line_item.total_price) %></td>
+      </tr>
+  <% end %>
+  <tr class="total_line">
+    <td colspan="2">Total</td>
+    <td class="total_cell"><%= number_to_currency(@order.line_items.to_a.sum { |item| item.total_price }) %></td>
+  </tr>
 </table>
 
 <p>We'll send you a separate e-mail when your order ships.</p>
